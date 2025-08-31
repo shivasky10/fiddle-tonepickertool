@@ -11,16 +11,15 @@ services:
         value: production
       - key: MISTRAL_API_KEY
         sync: false
-      - key: PORT
-        value: 10000
+      - key: FRONTEND_URL
+        value: https://tone-picker-frontend.onrender.com
 
-  # Frontend Web Service
-  - type: web
+  # Frontend (React) Static Site
+  - type: static_site
     name: tone-picker-frontend
-    env: static
     plan: free
     buildCommand: cd client && npm install && npm run build
-    staticPublishPath: ./client/build
+    publishDir: client/build
     envVars:
       - key: REACT_APP_API_URL
         value: https://tone-picker-backend.onrender.com/api
